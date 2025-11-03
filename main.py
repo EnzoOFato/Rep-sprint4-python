@@ -1,26 +1,29 @@
 import os
 from mensagens import *
 from contagem import Contagem
+from crud import *
 
-jogadoras = {}
 contagem = Contagem(3)
 
 while True:
     os.system("cls")
     escolha = mensagem_incial()
     if escolha == 1:
-        pass
+        consultar_jogadoras_alfa()
+        input("Continuar ")
     elif escolha == 2:
-        pass
+        cadastrar_jogadora()
+        contagem.contar()
     elif escolha == 3:
-        pass
+        atualizar_jogadora()
+        contagem.contar()
     elif escolha == 4:
         pass
     elif escolha == 5:
         pass
     elif escolha == 6:
-        print("Até logo")
+        mensagem_final()
         contagem.contar()
         break
     else:
-        print("Escolha uma opção correta")
+        mensagem_erro()
