@@ -11,17 +11,18 @@ while True:
     if escolha == 1:
         consultar_jogadoras_alfa()
         input("Continuar ")
-    elif escolha == 2:
+    elif escolha == 3:
         cadastrar_jogadora()
         contagem.contar()
-    elif escolha == 3:
+    elif escolha == 4:
         atualizar_jogadora()
         contagem.contar()
-    elif escolha == 4:
-        pass
     elif escolha == 5:
-        pass
+        deletar_jogadora()
+        contagem.contar()
     elif escolha == 6:
+        pass
+    elif escolha == 7:
         mensagem_final()
         contagem.contar()
         break

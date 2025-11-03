@@ -26,10 +26,23 @@ def atualizar_jogadora():
         id = mensagem_id("atualizada")
         index = id -1
         jogadoras.pop(index)
-        dados = mensagem_atualizacao()
+        dados = mensagem_atualizacao(jogadoras[index])
         jogadora_atualizada = Jogadora(id, jogadoras[index].nome, jogadoras[index].idade, jogadoras[index].clube, *dados)
         jogadoras.insert(index, jogadora_atualizada)
         sobrescrever_arquivo(jogadoras)
         print("\nJogadora atualizada com sucesso!")
+        jogadoras = ler_jogadoras()
+    except (ValueError, IndexError):
+        print("\nID inválido. Digite um número válido.")
+
+def deletar_jogadora():
+    try:
+        global jogadoras
+        id = mensagem_id("deletada")
+        index = id -1
+        jogadoras.pop(index)
+        sobrescrever_arquivo(jogadoras)
+        print("\nJogadora deletada com sucesso!")
+        jogadoras = ler_jogadoras()
     except (ValueError, IndexError):
         print("\nID inválido. Digite um número válido.")

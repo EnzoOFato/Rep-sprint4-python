@@ -1,7 +1,7 @@
 def mensagem_incial():
     print("\nEscolha uma das seguintes opções")
-    print("<1> Consultar jogadoras (ordem alfabética)\n<2> Cadastrar Jogadoras\n<3> Atualizar Jogadora (BMP e Velocidade)")
-    print("<4> Deletar Jogadoras\n<5> Consultar jogadora por id\n<6> Sair do programa")
+    print("<1> Consultar jogadoras (ordem alfabética)\n<2> Consultar jogadoras (id)\n<3> Cadastrar Jogadoras\n<4> Atualizar Jogadora (BMP e Velocidade)")
+    print("<5> Deletar Jogadoras\n<6> Consultar jogadora por id\n<7> Sair do programa")
     try:
         return int(input("Resposta: "))
     except ValueError:
@@ -28,8 +28,8 @@ def mesagem_visualizacao(jogadora):
     else:
         print("Nenhuma jogadora encontrada.")
 
-def mensagem_atualizacao():
-    print("\nAtualização de Jogadora")
+def mensagem_atualizacao(jogadora):
+    print(f"\nAtualização de {jogadora.nome}")
     bpm = input("Novo BPM: ")
     velocidade = input("Nova Velocidade: ")
     return bpm, velocidade
