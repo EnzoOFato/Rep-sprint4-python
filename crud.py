@@ -35,20 +35,19 @@ def atualizar_jogadora():
         global jogadoras
         jogadoras = ler_jogadoras()
         id = mensagem_id("atualizada")
-        index = int(id) -1
-        if index < 0 or index >= len(jogadoras):
-            raise IndexError
-        jogadoras.pop(index)
-
         jogadora_antiga = None
+
         for jogadora in jogadoras:
             if jogadora.id == id:
                 jogadora_antiga = jogadora
                 break
-        dados = mensagem_atualizacao(jogadora_antiga)
-        jogadora_atualizada = Jogadora(id, jogadora_antiga.nome, jogadora_antiga.idade, jogadora_antiga.clube, *dados)
 
-        jogadoras.append(jogadora_atualizada)
+        if not jogadora_antiga:
+            raise ValueError
+
+        dados = mensagem_atualizacao(jogadora_antiga)
+        jogadora_antiga.bpm, jogadora_antiga.velocidade = dados
+
         sobrescrever_arquivo(jogadoras)
         
         print("\nJogadora atualizada com sucesso!")
