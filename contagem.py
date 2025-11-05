@@ -1,5 +1,6 @@
-import time
+import time # Import da biblioteca time para usar a função sleep
 
+# Classe contagem para realizar a contagem regressiva
 class Contagem:
     def __init__(self, tempo):
         self.tempo = tempo
