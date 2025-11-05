@@ -71,3 +71,17 @@ def deletar_jogadora():
         jogadoras = ler_jogadoras()
     except (ValueError, IndexError):
         print("\nID inválido. Digite um número válido.")
+
+def consultar_jogadora_id():
+    try:
+        id = mensagem_id("consultada")
+        jogadora_encontrada = None
+
+        for jogadora in jogadoras:
+            if jogadora.id == id:
+                jogadora_encontrada = jogadora
+                break
+
+        mesagem_visualizacao(jogadora_encontrada)
+    except ValueError:
+        print("\nID inválido. Digite um número válido.")

@@ -39,3 +39,6 @@ def mensagem_id(acao):
         return input(f"\nDigite o ID da jogadora a ser {acao}: ")
     except ValueError:
         return "Digite um número válido."
+    
+def continuar():
+    return "\nPressione Enter para continuar..." 
