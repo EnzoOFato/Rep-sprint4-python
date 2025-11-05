@@ -11,6 +11,9 @@ while True:
     if escolha == 1:
         consultar_jogadoras_alfa()
         input("Continuar ")
+    elif escolha == 2:
+        consultar_jogadora_id()
+        input("Continuar ")
     elif escolha == 3:
         cadastrar_jogadora()
         contagem.contar()

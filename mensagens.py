@@ -36,6 +36,6 @@ def mensagem_atualizacao(jogadora):
 
 def mensagem_id(acao):
     try:
-        return int(input(f"\nDigite o ID da jogadora a ser {acao}: "))
+        return input(f"\nDigite o ID da jogadora a ser {acao}: ")
     except ValueError:
         return "Digite um número válido."

@@ -7,9 +7,13 @@ jogadoras = ler_jogadoras()
 def cadastrar_jogadora():
     global jogadoras
     dados = mensagem_cadastro()
-    jogadora = None
-    for i in range(len(dados)):
-        jogadora = Jogadora(len(jogadoras)+1,*dados)
+
+    if jogadoras:
+        novo_id = int(jogadoras[-1].id) + 1
+    else:
+        novo_id = 1
+
+    jogadora = Jogadora(str(novo_id), *dados)
     escrever(jogadora)
     print("\nJogadora cadastrada com sucesso!")
     jogadoras = ler_jogadoras()
@@ -20,16 +24,33 @@ def consultar_jogadoras_alfa():
     for jogadora in jogadoras_ordenadas:
         mesagem_visualizacao(jogadora)
 
+def consultar_jogadora_id():
+    jogadoras_ordenadas = sorted(jogadoras, key=lambda x: x.id)
+    print("\nConsulta de Jogadora por ID")
+    for jogadora in jogadoras_ordenadas:
+        mesagem_visualizacao(jogadora)
+
 def atualizar_jogadora():
     try:
         global jogadoras
+        jogadoras = ler_jogadoras()
         id = mensagem_id("atualizada")
-        index = id -1
+        index = int(id) -1
+        if index < 0 or index >= len(jogadoras):
+            raise IndexError
         jogadoras.pop(index)
-        dados = mensagem_atualizacao(jogadoras[index])
-        jogadora_atualizada = Jogadora(id, jogadoras[index].nome, jogadoras[index].idade, jogadoras[index].clube, *dados)
-        jogadoras.insert(index, jogadora_atualizada)
+
+        jogadora_antiga = None
+        for jogadora in jogadoras:
+            if jogadora.id == id:
+                jogadora_antiga = jogadora
+                break
+        dados = mensagem_atualizacao(jogadora_antiga)
+        jogadora_atualizada = Jogadora(id, jogadora_antiga.nome, jogadora_antiga.idade, jogadora_antiga.clube, *dados)
+
+        jogadoras.append(jogadora_atualizada)
         sobrescrever_arquivo(jogadoras)
+        
         print("\nJogadora atualizada com sucesso!")
         jogadoras = ler_jogadoras()
     except (ValueError, IndexError):
@@ -39,9 +60,14 @@ def deletar_jogadora():
     try:
         global jogadoras
         id = mensagem_id("deletada")
-        index = id -1
+        index = int(id) -1
+
+        if index < 0 or index >= len(jogadoras):
+            raise IndexError
+        
         jogadoras.pop(index)
         sobrescrever_arquivo(jogadoras)
+
         print("\nJogadora deletada com sucesso!")
         jogadoras = ler_jogadoras()
     except (ValueError, IndexError):
